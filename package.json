@@ -7,7 +7,7 @@
     "test": "mocha",
     "build": "node_modules/.bin/browserify index.js -o dist/lite.js -t [ babelify --presets [ es2015 ] ]",
     "build:min": "npm run build && node_modules/.bin/uglifyjs dist/lite.js -o dist/lite.min.js",
-    "demo:build": "npm run build:min && cp dist/lite.js demo/lib/lite.js"
+    "docs:build": "npm run build:min && cp dist/lite.js docs/lib/lite.js"
   },
   "repository": {
     "type": "git",
