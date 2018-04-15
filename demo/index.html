@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <script src="https://use.fontawesome.com/62d1b8f735.js"></script>
+  <link rel="stylesheet" href="lib/atom-one-light.css">
+<script src="lib/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <title>Lite.js</title>
+  <!-- Lite -->
+  <script type="text/javascript" src="lib/lite.js"></script>
+
+  <!-- Site files -->
+  <link rel="stylesheet" type="text/css" href="assets/index.css">
+</head>
+<body>
+  <h1 class="title">Lite.js</h1>
+  <p class="description">
+    A lightweight ( 5kb minified ), bare bones, javascript animation engine with some handy easing functions.
+  </p>
+
+  <a href="https://github.com/XerxesNoble/Lite.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+
+  <!-- Demo A -->
+  <div class="demo" id="a">
+    <h3>Basic usage:</h3>
+    <div class="box" id="demo-box-a"></div>
+    <div class="controls">
+      <i id="a-play" class="fa fa-play" aria-hidden="true"></i>
+      <i id="a-pause" class="fa fa-pause" aria-hidden="true"></i>
+      <i id="a-restart" class="fa fa-refresh" aria-hidden="true"></i>
+    </div>
+    <div class="code">
+      <pre>
+        <code class="html">
+          const Lite = require('lite.js')
+
+          const box = document.getElementById('box')
+          const tween = Lite.to({ scale: 1 }, 2000, {
+            scale: 0.3,
+            onUpdate(obj) {
+              box.style.transform = `scale(${obj.scale})`
+            }
+          })
+        </code>
+      </pre>
+    </div>
+  </div>
+
+  <!-- Demo B -->
+  <div class="demo" id="b">
+    <h3>Color:</h3>
+    <div class="box" id="demo-box-b"></div>
+    <div class="controls">
+      <i id="b-play" class="fa fa-play" aria-hidden="true"></i>
+      <i id="b-pause" class="fa fa-pause" aria-hidden="true"></i>
+      <i id="b-restart" class="fa fa-refresh" aria-hidden="true"></i>
+    </div>
+    <div class="code">
+      <pre>
+        <code class="html">
+          const Lite = require('lite.js')
+
+          const box = document.getElementById('box')
+          const tween = Lite.to({ r: 81, g: 45 , b: 186 }, 1000, {
+            r: 0,
+            g: 150,
+            b: 136,
+            onUpdate(obj) {
+              const rgb = [obj.r, obj.g, obj.b].map(Math.round)
+              box.style.background = `rgb(${rgb.join()})`
+            }
+          })
+        </code>
+      </pre>
+    </div>
+  </div>
+
+  <!-- Demo C -->
+  <div class="demo" id="c">
+    <h3>Loop animation:</h3>
+    <div class="box" id="demo-box-c"></div>
+    <div class="controls">
+      <i id="c-play" class="fa fa-play" aria-hidden="true"></i>
+      <i id="c-pause" class="fa fa-pause" aria-hidden="true"></i>
+      <i id="c-restart" class="fa fa-refresh" aria-hidden="true"></i>
+    </div>
+    <div class="code">
+      <pre>
+        <code class="html">
+          const Lite = require('lite.js')
+
+          const box = document.getElementById('box')
+          const tween = Lite.to({ rotate: 0 }, 10000, {
+            rotate: 360,
+            onUpdate: function(obj) {
+              box.style.transform = `scale(0.4) rotate(${obj.rotate}deg)`
+            }
+          }).loop()
+        </code>
+      </pre>
+    </div>
+  </div>
+
+  <!-- Demo D -->
+  <div class="demo" id="c">
+    <h3>Easing:</h3>
+    <div class="box" id="demo-box-d"></div>
+    <div class="controls">
+      <i id="d-play" class="fa fa-play" aria-hidden="true"></i>
+      <i id="d-pause" class="fa fa-pause" aria-hidden="true"></i>
+      <i id="d-restart" class="fa fa-refresh" aria-hidden="true"></i>
+    </div>
+    <div class="code">
+      <pre>
+        <code class="html">
+          const Lite = require('lite.js')
+
+          const box = document.getElementById('box')
+          Lite.to({ rotate: 0, scale: 0.2 }, 2000, {
+            rotate: 180,
+            scale: 0.8,
+            onUpdate: function(obj) {
+              box.style.transform =  `scale(${obj.scale}) rotate(${obj.rotate}deg)`)
+            },
+            ease: Lite.ease.inElastic
+          })
+        </code>
+      </pre>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="assets/index.js"></script>
+</body>
+</html>
